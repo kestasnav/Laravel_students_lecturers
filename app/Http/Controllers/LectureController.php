@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Group;
 use App\Models\Lecture;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,13 @@ class LectureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+       $lectures=Lecture::with('group')->get();
+
+      //  $lectures = Lecture::where('group_id', )->get();
+
+        return view("lectures.index",['lectures'=>$lectures]);
     }
 
     /**

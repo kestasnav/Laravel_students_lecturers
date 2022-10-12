@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Group;
+
+use App\Models\GroupUser;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -14,7 +17,11 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $groups=Group::with('lecturer')->get();
+       //$students=GroupUser::with('students')->get();
+      // $students=$students->count();
+
+        return view("groups.index",['groups'=>$groups]);
     }
 
     /**
@@ -82,4 +89,12 @@ class GroupController extends Controller
     {
         //
     }
+
+    public function students($name,Request $request){
+
+        $request->post($name);
+        return $this->students();
+
+    }
+
 }
