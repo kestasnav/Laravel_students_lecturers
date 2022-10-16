@@ -120,11 +120,11 @@ class FileController extends Controller
         return redirect()->back();
     }
 
-    public  function download($id)
+    public  function download( $id)
     {
         $failas= storage_path('/app/paskaitosFailai/'.$id);
-        //return response()->download( $failas);
-        return Storage::download( $failas);
+        return response()->download( $failas);
+
     }
 
 }

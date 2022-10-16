@@ -32,18 +32,23 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link bg bg-danger text-white mx-1" href="{{ route('courses.index') }}">Kursai</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link bg bg-danger text-white mx-1" href="{{ route('groups.index') }}">Grupės</a>
                         </li>
+                        @guest
+                        @else
+                        @if(Auth::user()->type=='destytojas')
+                        <li class="nav-item">
+                            <a class="nav-link bg bg-danger text-white mx-1" href="{{ route('courses.index') }}">Kursai</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link bg bg-danger text-white mx-1" href="{{ route('lectures.index') }}">Paskaitos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link bg bg-danger text-white mx-1" href="{{ route('students.index') }}">Studentų sąrašas</a>
                         </li>
-
+                        @endif
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -53,6 +58,9 @@
                         <li class="nav-item">
                             <a class="nav-link bg bg-info text-white mx-1" href="{{ route('profilis', Auth::user()->id) }}">Profilio redagavimas</a>
                         </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg bg-secondary text-white mx-1" href="{{ route('profilis', Auth::user()->id) }}">Žinutės</a>
+                            </li>
                         @endguest
                         <!-- Authentication Links -->
                         @guest
