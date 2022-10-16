@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -14,7 +15,7 @@ class FileController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -35,7 +36,20 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paskaitosFailas = new File();
+
+        $failas=$request->file('file');
+
+        $filename=$request->lecture_id.'_'.rand().'.'.$failas->extension();
+
+        $paskaitosFailas->file=$filename;
+        $paskaitosFailas->lecture_id=$request->lecture_id;
+        $paskaitosFailas->name=$request->name;
+
+        $failas->storeAs('paskaitosFailai',$filename);
+        $paskaitosFailas->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -46,7 +60,8 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        //
+        $files=File::all();
+        return view('files.show', ['files'=>$files]);
     }
 
     /**
@@ -80,6 +95,36 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        //
+        unlink( storage_path('/app/paskaitosFailai/'.$file->file));
+        $file->delete();
+        return redirect()->back();
     }
+
+    public function display($name,Request $request){
+        $file=storage_path('app/paskaitosFailai/'.$name);
+        return response()->file( $file );
+    }
+
+    public  function hide(File $file, Request $request, $add)
+    {
+        $file=File::find($add);
+        $file->hide=$request->hide;
+        $file->save();
+        return redirect()->back();
+    }
+    public  function unhide(File $file, Request $request, $remove)
+    {
+        $file=File::find($remove);
+        $file->hide=$request->hide;
+        $file->save();
+        return redirect()->back();
+    }
+
+    public  function download($id)
+    {
+        $failas= storage_path('/app/paskaitosFailai/'.$id);
+        //return response()->download( $failas);
+        return Storage::download( $failas);
+    }
+
 }

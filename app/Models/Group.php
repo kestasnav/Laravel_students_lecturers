@@ -17,7 +17,10 @@ class Group extends Model
     public function lecturer() {
         return $this->belongsTo(User::class);
     }
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function students() {
+        return $this->belongsToMany(User::class, 'group_user');
+    }
+    public function student() {
+        return $this->hasMany(User::class);
     }
 }

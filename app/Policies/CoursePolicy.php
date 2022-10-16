@@ -2,13 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Group;
-use App\Models\GroupUser;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
-class GroupPolicy
+class CoursePolicy
 {
     use HandlesAuthorization;
 
@@ -18,21 +16,21 @@ class GroupPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user, Group $group)
+    public function viewAny(User $user)
     {
-            return $user->id == $group->lecturer_id;
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Group $group)
+    public function view(User $user, Course $course)
     {
-
+        //
     }
 
     /**
@@ -50,10 +48,10 @@ class GroupPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Group $group)
+    public function update(User $user, Course $course)
     {
         return $user->type=="destytojas";
     }
@@ -62,22 +60,22 @@ class GroupPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Group $group)
+    public function delete(User $user, Course $course)
     {
-        return $user->id==$group->lecturer_id;
+        return $user->type=="destytojas";
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Group $group)
+    public function restore(User $user, Course $course)
     {
         //
     }
@@ -86,10 +84,10 @@ class GroupPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Group $group)
+    public function forceDelete(User $user, Course $course)
     {
         //
     }
