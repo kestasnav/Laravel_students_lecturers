@@ -16,9 +16,18 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all()->where('receiver_id',Auth::user()->id);
-        $senderMsg = Message::all()->where('sender_id',Auth::user()->id);
-        return view("messages.index",['messages'=>$messages, 'senderMsg'=>$senderMsg]);
+
+        $messages = Message::all()->where('receiver_id', Auth::user()->id);
+
+        $senderMsg = Message::all()->where('sender_id', Auth::user()->id);
+            $count=0;
+        foreach ($messages as $message) {
+            if ($message->read_or_not == 0) {
+                $count++;
+         }
+        }
+
+        return view("messages.index",['messages'=>$messages, 'senderMsg'=>$senderMsg, 'count'=>$count]);
     }
 
     /**
@@ -110,8 +119,12 @@ class MessageController extends Controller
     public  function layout()
     {
         $messages = Message::all()->where('receiver_id',Auth::user()->id);
-        $count =null;
-
+        $count=0;
+        foreach ($messages as $message) {
+            if($message->read_or_not == 0) {
+               $count++;
+            }
+        }
 
         return view("layouts.app",['messages'=>$messages, 'count'=>$count]);
     }

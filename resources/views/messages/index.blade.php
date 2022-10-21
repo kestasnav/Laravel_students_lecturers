@@ -4,7 +4,7 @@
         <div class="col-md-12 mt-5 mb-5">
             <div class="card">
                 <div class="card-header"> Žinutės
-                    <a class="btn btn-primary float-end" href="{{ route('messages.create') }}">Siųsti naują žinutę</a>
+                             <a class="btn btn-primary float-end" href="{{ route('messages.create') }}">Siųsti naują žinutę</a>
                 </div>
 
                 <div class="card-body">
@@ -12,7 +12,13 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Gautos žinutės</th>
+                            <th>Gautos žinutės
+                                @foreach($messages as $msg)
+                                @if($msg->read_or_not == 0)
+                             (Neperskaitytos žinutės: {{ $count }})
+                            @endif
+                                @endforeach
+                            </th>
                             <th>Siuntėjas</th>
                             <th>El. Paštas</th>
                             <th></th>
