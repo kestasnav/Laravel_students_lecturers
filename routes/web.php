@@ -4,6 +4,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LectureController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('students', UserController::class);
     Route::resource('lectures', LectureController::class);
     Route::resource('files', FileController::class);
+    Route::resource('messages', MessageController::class);
 
 Route::get('/studentai/{name}',[GroupController::class, 'studentai'])
     ->name('studentai');
@@ -46,6 +48,7 @@ Route::get('/failai/{name}',[FileController::class, 'display'])
 Route::put('hide/{add}', [FileController::class, 'hide'])->name('hide');
 Route::put('unhide/{remove}', [FileController::class, 'unhide'])->name('unhide');
 Route::get('download/{id}', [FileController::class, 'download'])->name('download');
+Route::put('read/{read}', [MessageController::class, 'read'])->name('read');
 
 Auth::routes();
 

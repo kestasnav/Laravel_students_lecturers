@@ -58,8 +58,11 @@
                         <li class="nav-item">
                             <a class="nav-link bg bg-info text-white mx-1" href="{{ route('profilis', Auth::user()->id) }}">Profilio redagavimas</a>
                         </li>
+
+
                             <li class="nav-item">
-                                <a class="nav-link bg bg-secondary text-white mx-1" href="{{ route('profilis', Auth::user()->id) }}">Žinutės</a>
+                     <a class="nav-link bg bg-secondary text-white mx-1" href="{{ route('messages.index') }}">Žinutės</a>
+
                             </li>
                         @endguest
                         <!-- Authentication Links -->

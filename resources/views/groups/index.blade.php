@@ -28,8 +28,6 @@
 
                         @foreach($groups as $group)
 
-
-
                         <tr>
                                 <td>{{ $group->name }}</td>
                                     <td>{{ $group->course->name }}</td>
