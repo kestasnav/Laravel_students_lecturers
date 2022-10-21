@@ -7,6 +7,8 @@
 # ![screencapture-127-0-0-1-8000-lectures-1-2022-10-16-11_21_48](https://user-images.githubusercontent.com/107037107/196026474-f4861838-9e45-4c5f-bd37-96b492215392.png)
 # Studentų sąrašas : 
 # ![screencapture-127-0-0-1-8000-students-2022-10-16-11_40_30](https://user-images.githubusercontent.com/107037107/196026493-cf8b9903-5962-4394-84d6-5d1dbfb0bf6f.png)
+# Žinučių siuntimas :
+# ![screencapture-localhost-Laravel-baltictalents-public-messages-2022-10-21-13_34_00](https://user-images.githubusercontent.com/107037107/197176545-db674254-4462-4dd7-989d-7b46d434965a.png)
 # Kursai :
 # ![screencapture-127-0-0-1-8000-courses-2022-10-16-11_41_14](https://user-images.githubusercontent.com/107037107/196026520-e40384dd-8598-4097-803c-271485e83db7.png)
 # Konkrečios grupės studentų sąrašas :
