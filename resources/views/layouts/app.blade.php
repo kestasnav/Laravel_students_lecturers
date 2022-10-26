@@ -61,7 +61,7 @@
 
 
                             <li class="nav-item">
-                     <a class="nav-link bg bg-secondary text-white mx-1" href="{{ route('messages.index') }}">Žinutės [{{ $count }}]</a>
+                     <a class="nav-link bg bg-secondary text-white mx-1" href="{{ route('messages.index') }}">Žinutės [{{ \App\Models\Message::messagesCount() }}]</a>
                             </li>
                         @endguest
                         <!-- Authentication Links -->

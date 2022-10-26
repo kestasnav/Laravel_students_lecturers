@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CourseRESTController;
+use App\Http\Controllers\GroupRESTController;
+use App\Http\Controllers\UserRESTController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('courses', CourseRESTController::class);
+Route::resource('groups', GroupRESTController::class);
+Route::resource('lecturers', UserRESTController::class);

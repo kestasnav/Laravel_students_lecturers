@@ -16,6 +16,7 @@
                                 @foreach($messages as $msg)
                                 @if($msg->read_or_not == 0)
                              (Neperskaitytos žinutės: {{ $count }})
+                                    @break
                             @endif
                                 @endforeach
                             </th>

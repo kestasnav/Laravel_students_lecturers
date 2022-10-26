@@ -17,9 +17,9 @@ class MessageController extends Controller
     public function index()
     {
 
-        $messages = Message::all()->where('receiver_id', Auth::user()->id);
+        $messages = Message::all()->where('receiver_id', Auth::user()->id)->sortDesc();
 
-        $senderMsg = Message::all()->where('sender_id', Auth::user()->id);
+        $senderMsg = Message::all()->where('sender_id', Auth::user()->id)->sortDesc();
             $count=0;
         foreach ($messages as $message) {
             if ($message->read_or_not == 0) {
@@ -119,6 +119,9 @@ class MessageController extends Controller
     public  function layout()
     {
         $messages = Message::all()->where('receiver_id',Auth::user()->id);
+
+
+
         $count=0;
         foreach ($messages as $message) {
             if($message->read_or_not == 0) {

@@ -7,7 +7,7 @@ use App\Models\Group;
 use App\Models\Lecture;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class CourseRESTController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,10 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses=Course::with('group')->get();
+        $courses=Course::all();
         $groups=Group::with('course')->where('course_id','id')->get();
 
-        return view("courses.index",['courses'=>$courses, 'groups'=>$groups]);
+        return $courses;
     }
 
     /**
@@ -41,18 +41,12 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ],
-            [
-                'name.required' => 'Kursų pavadinimas privalomas',
 
-            ]);
         $courses = new Course();
         $courses->name=$request->name;
 
         $courses->save();
-        return redirect()->route('courses.index');
+        return $courses;
     }
 
     /**
@@ -63,7 +57,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        return $course;
+       return $course;
     }
 
     /**
@@ -75,7 +69,7 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
 
-        return view("courses.update", ['course'=>$course]);
+        return $course;
     }
 
     /**
@@ -87,18 +81,12 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        $request->validate([
-            'name' => 'required',
-        ],
-            [
-                'name.required' => 'Kursų pavadinimas privalomas',
 
-            ]);
 
         $course->name=$request->name;
 
         $course->save();
-        return redirect()->route('courses.index');
+        return $course;
     }
 
 
@@ -110,8 +98,9 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Course $course)
-    {$course->delete();
-        return redirect()->back();
+    {
+        $course->delete();
+        return $course;
 
     }
 }
