@@ -20,9 +20,9 @@ class GroupRESTController extends Controller
      */
     public function index()
     {
-        //$groups=Group::with(['lecturer','students','course'])->where('lecturer_id', Auth::user()->id)->get();
+        return $groups=Group::with(['lecturer','students','course'])->where('lecturer_id', Auth::user()->id)->get();
         //$studentas= User::where('id', Auth::user()->id)->get();
-    return $groups=Group::with(['course','lecturer'])->get();
+  //  return $groups=Group::with(['course','lecturer'])->get();
         //$groupsSt=GroupUser::with(['groups'])->where('user_id', Auth::user()->id)->get();
     // return   $groups=Group::all();
        //dd($groupsSt);
